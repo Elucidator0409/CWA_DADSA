@@ -1,12 +1,13 @@
 
 class Output:
-    def __init__(self, item, order,houselist)
+    def __init__(self, itemList, quantityList,houselist)
     days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"]
     print("Shopping Schedule")
     print("Week 1")
     for a in days:
         print(a)
-        print (item + ", "+ order)
+        for item, quantity in zip(itemList, quantityList):
+            print (item) ,"", (quantity)
         input("Press Enter to continue...")
 
     print("Delivery Schedule")
