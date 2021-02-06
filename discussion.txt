@@ -1,0 +1,28 @@
+1. problem:
+Main: Find the schedule for purchasing
+The schedule is for 1 week - 7 days 
+- Each day includes which store (1 store/day) and which items. 
+- If there are houses can be completed (all items bought) -> deliver immediately
+- cannot store the items bought in storage for more than 1 days (from the day of purchase)
+
+Sub:
+- Number of trips per store has to be minimum
+- Number of different times they have to buy the same item to be minimum
+*Example of the second situation:
+Day 1: visit store A -> buy potato (house A and house B need)
+Day 2: visit store B -> buy sth else and deliver to House A, but house B still needs sth from store C
+Day 3: visit store C -> buy potato again and deliver to House B
+
+2. Data structure - in terms of classes
+- Item class: main data point
+contains "name", "cost"
+
+- Node class: implemetation of linkedList
+contains "data", "head" and "tail"
+
+- Store class: implmentation of linkedList
+contains a list of "Item" and the store "name"
+
+
+
+

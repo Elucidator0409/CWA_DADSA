@@ -3,4 +3,4 @@ class Order:
         self.name = name
         self.itemlist = itemlist
         self.order = order
-        #self.print = print("Order of {0} is : {1} {2}".format(number,itemlist,order))
+        self.print = print("Order of {0} is : {1} {2}".format(name,itemlist,order))
