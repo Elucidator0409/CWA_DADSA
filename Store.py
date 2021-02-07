@@ -2,42 +2,64 @@ class Store:
     #Constructors
     def __init__(self, item, name):
         #items will not be duplicated, this is enforced by the user
-        self.item = []
+        self.item = item
         self.name = name
     
     #method for usage
-    def checkInStore(self, item):
-        #check if item is in the store
-        #use binary search, based on the fact that the items are sorted
-        return self.binary_search(0, len(self.item), item)
+   
 
     def sortStore(self):
         #sort the items in the store for faster searching (binary search)
-        return
+       
+        n = len(self.item)
+
+        for i in range(n):
+        # Create a flag that will allow the function to
+        # terminate early if there's nothing left to sort
+            already_sorted = True
+
+        # Start looking at each item of the list one by one,
+        # comparing it with its adjacent value. With each
+        # iteration, the portion of the self.item that you look at
+        # shrinks because the remaining items have already been
+        # sorted.
+            for j in range(n - i - 1):
+                if self.item[j] > self.item[j + 1]:
+                # If the item you're looking at is greater than its
+                # adjacent value, then swap them
+                    self.item[j], self.item[j + 1] = self.item[j + 1], self.item[j]
+
+                # Since you had to swap two elements,
+                # set the `already_sorted` flag to `False` so the
+                # algorithm doesn't finish prematurely
+                    already_sorted = False
+
+        # If there were no swaps during the last iteration,
+        # the self.item is already sorted, and you can terminate
+            if already_sorted:
+                break
+
+        return self.item
+            
 
     
     ############################
     #algorithm methods
 
-    def binary_search(self, low, high, x):
-    #Recursive case
-        if (high >= low):
-            mid = (high + low) // 2
-    
-            #If element is at the middle -> found the value
-            if self.item[mid] == x:
-                return True
-            #If element is smaller than the middle value -> search in the lower half
-            elif self.item[mid] > x:
-                return self.binary_search(low, mid - 1, x)
-            #If element is larger than the middle value -> search in the upper half
-            else:
-                return self.binary_search(mid + 1, high, x)
-            
-        else:
-            # Element is not present in the array
-            return False
-
+    def search(self,item):
+	    first = 0
+	    last = len(self.item)-1
+	    found = False
+	    while( first<=last and not found):
+		    mid = (first + last)//2
+		    if self.item[mid] == item :
+			    found = True
+		    else:
+			    if item < self.item[mid]:
+				    last = mid - 1
+			    else:
+				    first = mid + 1	
+	    return found
 
     def quick_sort(self):
         return

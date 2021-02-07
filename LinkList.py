@@ -14,27 +14,34 @@ class DoublyLinkedList:
     #def sortOrder(self)
 
     
-    def itemSearch(self, value): #search list by name
-        x = False
-        n = self.head
-        head = n
-        tail = n  
-        while tail.next is not None:  
-            tail = tail.next
-        while head is not tail:
-            if head.item.name == value or tail.item.name == value:
-                x = True
+    def searchNode(self, value):    
+        i = 1
+        flag = False 
+        #Node current will point to head    
+        current = self.head
+            
+        #Checks whether the list is empty    
+        if(self.head == None):    
+            print("List is empty")    
+            return   
+                
+        while(current != None):    
+            #Compare value to be searched with each node in the list    
+            if(current.item.name == value):    
+                flag = True
+                
                 break
-            else:
-                head = head.next
-                tail = tail.pre
-        if x:
-            if head.item.name == value:
-                return head.item
-            else:
-                return tail.item
-        else:
-            return None
+            current = current.next;    
+            i = i + 1  
+                
+        if(flag):    
+               
+            return current.item
+
+        else:    
+            print("Node is not present in the list");    
+        
+        
 
     def insertToList(self, data): #method add to link list
         if self.head is None:
