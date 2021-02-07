@@ -20,8 +20,45 @@ contains "name", "cost"
 - Node class: implemetation of linkedList
 contains "data", "head" and "tail"
 
-- Store class: implmentation of linkedList
+- Store class: implmentation of linkedList (list in python)
 contains a list of "Item" and the store "name"
+
+3. Algorithm
+We have a list of "Order"
+- each "Order" will contain the name of the user (the house), a fixed list of "Product", a temporary list of "Product", a total cost (int)
+- the "Product" will have 2 attributes: the item and the quanity
+
+We have a buylist for all 7 days: buyList7 = []
+
+algo(currentStore, daysCount):
+while (1 -> 7 days):
+    buyList = []
+
+    if daysCount == 1 then re-initialize all temporary list for un-done Order (copy the fixed and paste it to the temporary?)
+
+    if (every Order is done):
+        we get a solution (buyList7), then compare the solution to the best solution we had
+        Compare on the attributes: length of the solution, number of times an item is bought
+    else
+        for (each Order):
+            if (Order is not done)
+                for (each Product):
+                    Search the product in the currentStore, if found then{
+                        remove the Product from the temporary list inside Order, if the list is empty{
+                            marked Order as done
+                            add all the Product in the fixed list of Order to the Buy list for today
+                        }
+                    }
+                    if not then do nothing
+
+    if (daysCount >= 2) daysCount = 1
+    else daysCount++
+
+    buyList7.append(buyList)
+
+    currentStore = findNextStore(currentStore)
+    algo(currentStore, daysCount)
+
 
 
 

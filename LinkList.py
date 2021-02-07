@@ -50,7 +50,7 @@ class DoublyLinkedList:
     
     def sortNodes(self): #sort list
         if self.head is None:
-            return;
+            return
         else:
             current = self.head
             while current.next is not None:
@@ -75,10 +75,10 @@ class DoublyLinkedList:
         #Node current will point to head    
         current = self.head;    
         if(self.head == None):    
-            print("List is empty");    
-            return;    
-        print("Nodes of doubly linked list: ");    
+            print("List is empty")  
+            return   
+        print("Nodes of doubly linked list: ")
         while(current != None):     
             #Prints each node by incrementing pointer.    
-            print(current.item.print),;    
-            current = current.next;    
+            print(current.item.print),    
+            current = current.next 
