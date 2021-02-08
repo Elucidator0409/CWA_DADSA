@@ -58,43 +58,70 @@ def toDO():
     for a in testName:
         tempOrder = order.searchNode(a) #search to house
         tempNeed = tempOrder.need       #take order list from house
-            
+        #print("do1")    
         for i in storeName: 
             tempList1 = store.searchNode(i) #search store
             tempList1.sortStore()           #sort item list in store
-
+            tempList2 = tempOrder.itemlist 
+            tempList3 = tempOrder.tempItemList
+            
+            #print("do2")
             for b in tempNeed: #take quantity from order list
                 if b>0 :  #if quantity of item is 1 or 2 
-                    itemCheck = tempOrder.tempItemList[0] #take  item from list of item from house corresponding with quantity from order list at that position
-                        
+                    
+                    itemCheck = tempList2[0] #take  item from list of item from house corresponding with quantity from order list at that position
+                    print(itemCheck)
+                    
                     check = tempList1.search(itemCheck) #search item in item list of store
+                    print(check)
+                   
                     if check == True: 
                         tempOrder.tempItemList.remove(itemCheck) #remove item from temp list in house
-                        buyInDay.append(check) #put item into list of product to buy in store  
-                        quantityList.append(b) #quantity of that item
-                if daysCount == 1:   # when shopping at 2 shop in 2 days 
+                        buyInDay.append(itemCheck) #put item into list of product to buy in store  
+                    
+                
+                '''
+                    if daysCount == 1:   # when shopping at 2 shop in 2 days 
                     if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
                         bought = buyInDay  + bought
                         itemDeli = bought
                         bought = []
                         daysCount = 0
                         break
+                    
                     else:         
                         for z in bought:
                             tempOrder.tempItemList.append(z) #if order is undone , add item from first store into itemlist one more time to search in third store
+                        itemCheck = tempOrder.tempItemList[0] #start to check item again in second store
+                        check = tempList1.search(itemCheck)
+                        if check == True: 
+                            tempOrder.tempItemList.remove(itemCheck) #remove item from temp list in house
+                            buyInDay.append(check) #put item into list of product to buy in store  
                         bought = buyInDay #save data of item buy in store second
-                        buyInDay = []  
-                if daysCount ==0:
+                        buyInDay = []
+                 
+                   '''      
+               
+                
+
+                if daysCount ==0 and check == True:
                     bought = buyInDay  + bought  #add item buy each day into list of item bought 
+                    print("do3")
                     buyInDay = []
+                elif len(tempList2)>=1:
+                    tempList2.pop(0)
+                     
+                        
                     
                 daysCount = daysCount + 1 
                 if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
                     itemDeli = bought
-                    for i in itemDeli:
-                        print(i)    
+                    print("do4")
                     bought = []
                     daysCount = 0
+                
+            
+                
         
 
       
