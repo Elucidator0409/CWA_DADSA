@@ -68,16 +68,23 @@ def toDO():
             #print("do2")
             for b in tempNeed: #take quantity from order list
                 if b>0 :  #if quantity of item is 1 or 2 
-                    
+                    print("START")
                     itemCheck = tempList2[0] #take  item from list of item from house corresponding with quantity from order list at that position
-                    print(itemCheck)
+                    print("Item to search :"+itemCheck)
                     
                     check = tempList1.search(itemCheck) #search item in item list of store
-                    print(check)
+                    
                    
                     if check == True: 
                         tempOrder.tempItemList.remove(itemCheck) #remove item from temp list in house
-                        buyInDay.append(itemCheck) #put item into list of product to buy in store  
+                        print("do")
+                        for i in tempOrder.tempItemList: 
+                            print(i)
+                        buyInDay.append(itemCheck) #put item into list of product to buy in store 
+                         
+                elif len(tempList2)>=1:
+                    tempList2.pop(0)
+           
                     
                 
                 '''
@@ -106,10 +113,11 @@ def toDO():
 
                 if daysCount ==0 and check == True:
                     bought = buyInDay  + bought  #add item buy each day into list of item bought 
-                    print("do3")
+                   
                     buyInDay = []
-                elif len(tempList2)>=1:
-                    tempList2.pop(0)
+                print("END ")
+                
+                
                      
                         
                     
