@@ -3,7 +3,7 @@ class House:
         self.name = name
         self.itemlist = itemlist
         self.tempItemList = itemlist
-        
+        self.productList = []
        
         self.need = need
     '''

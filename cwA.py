@@ -35,25 +35,24 @@ for i in range(0, 27):
 
 
 
-house1 = listOfHouse.searchNode("1A")
-listOfOrder = house1.need
+for i in houseNum:
+    tempHouse = listOfHouse.searchNode(i)
+    listOfOrder = tempHouse.need
 
-listOfProduct = []
-tempListOfItem = listOfItem
-for i in listOfOrder:
+    
+    tempListOfItem = listOfItem
+    count = 0
+    for i in listOfOrder:
   
-    if (i == 1 or i == 2):
+        if (i == 1 or i == 2):
         
-        tempListOfProduct = Product(tempListOfItem[0], i)
-        print(tempListOfProduct.item.name)
-        print(i)
-        tempListOfItem.pop(0)
-        listOfProduct.append(tempListOfProduct)
-    else:
-        tempListOfItem.pop(0)
+            tempListOfProduct = Product(tempListOfItem[count], i)
+            
+            count = count +1
+            tempHouse.productList.append(tempListOfProduct)
+        else:
+            count = count+1  
 
-
-  
 
 '''
 def toDO(): 
