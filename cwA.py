@@ -97,7 +97,7 @@ def toDO():
                             tempOrder.tempItemList.remove(check) #remove item from temp list in house
                             buyInDay.append(check) #put item into list of product to buy in store  
                             quantityList.append(b) #quantity of that item
-                    if daysCount == 2:   # when shopping at 2 shop in 2 days 
+                    if daysCount == 1:   # when shopping at 2 shop in 2 days 
                         if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
                             bought = buyInDay  + bought
                             itemDeli = bought
@@ -108,8 +108,9 @@ def toDO():
                             needBuy = needBuy + bought
                             bought = buyInDay
                             buyInDay = []  
-                    bought = buyInDay  + bought  #add item buy each day into list of item bought
-                    buyInDay = []
+                    if daysCount ==0:
+                        bought = buyInDay  + bought  #add item buy each day into list of item bought 
+                        buyInDay = []
                     
                     daysCount = daysCount + 1 
                     if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
