@@ -35,7 +35,7 @@ def toDO():
     
     for i in range(0, 27):
         tempProduct = Product(itemList[i], costList[i])
-        productList.append(tempProduct)
+        productList.append(tempProduct) # list of product 
   
     
    
@@ -57,7 +57,8 @@ def toDO():
     
     for a in testName:
         tempOrder = order.searchNode(a) #search to house
-        tempNeed = tempOrder.need       #take order list from house
+        tempNeed = tempOrder.createCopy()  
+         #take order list from house
         #print("do1")    
         for i in storeName: 
             tempList1 = store.searchNode(i) #search store
