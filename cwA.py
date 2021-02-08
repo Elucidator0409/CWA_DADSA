@@ -78,42 +78,44 @@ def toDO():
     quantityList = []
     daysCount = 0
     canDeli = []
-    while is_done:  #MAIN ALGO
        
 
         for a in testName:
-            tempOrder = order.searchNode(a)
-            tempNeed = tempOrder.need
+            tempOrder = order.searchNode(a) #search to house
+            tempNeed = tempOrder.need       #take order list from house
             
             for i in storeName: 
-                tempList1 = store.searchNode(i)
-                tempList1.sortStore()
-      
-                for b in tempNeed:
-                    if b>0 :
-                        
-                        
-                    
-                        itemCheck = tempOrder.tempItemList1[0]
-                        check = tempList1.search(itemCheck)
-                        if check == True:
-                            tempOrder.tempItemList.remove(check)
-                            buyInDay.append(check) #c
-                            quantityList.append(b)
-                    if daysCount == 2:    
-                        if not tempOrder.tempItemList :
-                    
+                tempList1 = store.searchNode(i) #search store
+                tempList1.sortStore()           #sort item list in store
+
+                for b in tempNeed: #take quantity from order list
+                    if b>0 :  #if quantity of item is 1 or 2 
+                        itemCheck = tempOrder.tempItemList1[0] #take  item from list of item from house corresponding with quantity from order list at that position
+
+                        check = tempList1.search(itemCheck) #search item in item list of store
+                        if check == True: 
+                            tempOrder.tempItemList.remove(check) #remove item from temp list in house
+                            buyInDay.append(check) #put item into list of product to buy in store  
+                            quantityList.append(b) #quantity of that item
+                    if daysCount == 2:   # when shopping at 2 shop in 2 days 
+                        if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
+                            bought = buyInDay  + bought
                             itemDeli = bought
                             bought = []
                             daysCount = 0
+                            break
                         else:         
                             needBuy = needBuy + bought
                             bought = buyInDay
                             buyInDay = []  
-                    bought = buyInDay  + bought  #a b c 
-                    tempBuyInDay = buyInDay# C
+                    bought = buyInDay  + bought  #add item buy each day into list of item bought
+                    buyInDay = []
                     
-                    daysCount = daysCount + 1   
+                    daysCount = daysCount + 1 
+                    if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
+                        itemDeli = bought
+                        bought = []
+                        daysCount = 0  
                     
                 
                     
