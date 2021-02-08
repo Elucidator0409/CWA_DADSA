@@ -1,33 +1,33 @@
 import csv
 from Store  import Store
-from Order  import Order
+from House  import House
 from LinkList import Node
 from LinkList import  DoublyLinkedList
 
 class Reader: #read file from csv
     
-    def __init__(self, store, order): #insert data from shoplist into stores
+    def __init__(self, store, house): #insert data from shoplist into stores
         with open('shoplist.csv') as csv_file:
             reader = csv.reader(csv_file, delimiter=',')
-            row1 = next(reader)
+            header = next(reader) #take name for stores
 
-            tempItemA = []
-            tempItemB = []
-            tempItemC = []
+            itemInA = []
+            itemInB = []
+            itemInC = []
             for col in reader:
                 tempItem = col[1]
                 if col[3] == "Y": 
-                    tempItemA.append(tempItem)
+                    itemInA.append(tempItem)
                 if col[4] == "Y": 
-                    tempItemB.append(tempItem)
+                    itemInB.append(tempItem)
                 if col[5] == "Y":
-                    tempItemC.append(tempItem)
+                    itemInC.append(tempItem)
 
            
             
-            tempStoreA = Store(tempItemA, row1[3])
-            tempStoreB = Store(tempItemB, row1[4])
-            tempStoreC = Store(tempItemC, row1[5])
+            tempStoreA = Store(itemInA, header[3])
+            tempStoreB = Store(itemInB, header[4])
+            tempStoreC = Store(itemInC, header[5])
             store.insertToList(tempStoreA)
             store.insertToList(tempStoreB)
             store.insertToList(tempStoreC)
@@ -38,24 +38,23 @@ class Reader: #read file from csv
             #deal with first and second lines of file
             tempName = next(reader) #take list of house numbers
             tempName.pop(0)
-            row2 = next(reader)
+            
+            next(reader) #skip lines 2 
 
             #add order from file to linklist    
             
-            item = []
-            orderlist = []
+            data = []
             tempOrder = []
             tempItem = []
-            tempOrder1 = []
            
-            count1 = 1  #count for variable in orderlist
+            count1 = 1  #count for variable in data
             count2 = 0  #count for variable in tempName
             for col in reader:
-                orderlist.append(col)
+                data.append(col)
             
             
             while count1<8: #loop b<8 for first week
-                for x in orderlist:
+                for x in data:
                     
                     tempItem.append(x[0])
                     if x[count1] == "":
@@ -64,51 +63,46 @@ class Reader: #read file from csv
                         tempOrder.append(1)
                     elif x[count1] == "2":
                         tempOrder.append(2)
-
-                   
                 count1= count1+1
                 
               
                 
-                tempHouse = Order(tempName[count2],tempItem, tempOrder)
-                
-                order.insertToList(tempHouse)
+                tempHouse = House(tempName[count2],tempItem, tempOrder)
+                house.insertToList(tempHouse)
                
                 count2= count2 + 1
                 
                 tempOrder = []
                 tempItem  = []
 
-    def readNameList(self):
+    def readHouseNumList(self):
          with open('householdlist.csv') as csv_file:
             reader = csv.reader(csv_file, delimiter=',')
             
             #deal with first and second lines of file
-            tempName = next(reader) #take list of house numbers
-            tempName.pop(0)
-            return tempName
+            houseNum = next(reader) #take list of house numbers
+            houseNum.pop(0)
+            return houseNum
 
     def readItemList(self):
         with open('shoplist.csv') as csv_file:
             reader = csv.reader(csv_file, delimiter=',')
-            row1 = next(reader)
-            row1.pop(0)
-            row1.pop(0)
-            row1.pop(0)
-            tempStoreName = []
-            for i in row1:
-                tempStoreName.append(i)
+            header = next(reader)
+            header.pop(0)
+            header.pop(0)
+            header.pop(0)
             
-            tempItemList = []
-            tempCostList = []
-            tempProductList = []
+            storeName = []
+            for i in header:
+                storeName.append(i)
+            
+            listOfItems = []
+            listOfCosts = []
             for col in reader:
-                tempItemList.append(col[1])
-                tempCostList.append(col[2])
-                
-                
+                listOfItems.append(col[1])
+                listOfCosts.append(col[2])
             
-            return tempItemList, tempCostList, tempStoreName
+            return listOfItems, listOfCosts, storeName
     
     
 

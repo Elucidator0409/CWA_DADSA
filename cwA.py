@@ -1,7 +1,7 @@
 import csv
 
 from Store  import Store
-from Order  import Order
+from House  import House
 from Reader import Reader
 from LinkList import Node
 from LinkList import  DoublyLinkedList
@@ -15,10 +15,10 @@ from Product import Product
 __MAIN__
 '''
 #create the blank list 
-order = DoublyLinkedList()
+house = DoublyLinkedList()
 store = DoublyLinkedList()
 #read data from the file
-read = Reader(store, order)
+read = Reader(store, house)
 
 
 
@@ -26,7 +26,7 @@ read = Reader(store, order)
 
 def toDO(): 
     itemList, costList, storeName = read.readItemList()
-    nameList = read.readNameList()
+    nameList = read.readHouseNumList()
     productList = []
     quantityList = []
     buyList = []
@@ -56,15 +56,15 @@ def toDO():
        
     
     for a in testName:
-        tempOrder = order.searchNode(a) #search to house
-        tempNeed = tempOrder.createCopy()  
+        tempHouse = house.searchNode(a) #search to house
+        tempNeed = tempHouse.need
          #take order list from house
         #print("do1")    
         for i in storeName: 
             tempList1 = store.searchNode(i) #search store
             tempList1.sortStore()           #sort item list in store
-            tempList2 = tempOrder.itemlist 
-            tempList3 = tempOrder.tempItemList
+            tempList2 = tempHouse.itemlist 
+            tempList3 = tempHouse.tempItemList
             
             #print("do2")
             for b in tempNeed: #take quantity from order list
@@ -77,9 +77,9 @@ def toDO():
                     
                    
                     if check == True: 
-                        tempOrder.tempItemList.remove(itemCheck) #remove item from temp list in house
+                        tempHouse.tempItemList.remove(itemCheck) #remove item from temp list in house
                         print("do")
-                        for i in tempOrder.tempItemList: 
+                        for i in tempHouse.tempItemList: 
                             print(i)
                         buyInDay.append(itemCheck) #put item into list of product to buy in store 
                          
@@ -123,7 +123,7 @@ def toDO():
                         
                     
                 daysCount = daysCount + 1 
-                if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
+                if not tempHouse.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
                     itemDeli = bought
                     print("do4")
                     bought = []
