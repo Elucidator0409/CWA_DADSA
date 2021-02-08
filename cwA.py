@@ -55,6 +55,24 @@ for i in houseNum:
         tempHouse.productList = productList #add product list to house
 
 
+#main Algorithm
+daysCheck  = 0
+daysCount  = 1
+bought     = []
+buyInDay   = []
+needBuy    = []
+
+while daysCount<=7 :
+    for a in houseNum:
+        House = listOfHouse.searchNode(a) #search
+        Order = House.productList    
+        for i in storeName:
+            Store = listOfStore.searchNode(i) #search
+            Store.sortStore()
+            for b in Order:
+                
+
+
 '''
 def toDO(): 
     itemList, costList, storeName = read.readItemList()
