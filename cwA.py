@@ -91,7 +91,7 @@ def toDO():
                 for b in tempNeed: #take quantity from order list
                     if b>0 :  #if quantity of item is 1 or 2 
                         itemCheck = tempOrder.tempItemList1[0] #take  item from list of item from house corresponding with quantity from order list at that position
-
+                        
                         check = tempList1.search(itemCheck) #search item in item list of store
                         if check == True: 
                             tempOrder.tempItemList.remove(check) #remove item from temp list in house
@@ -105,8 +105,9 @@ def toDO():
                             daysCount = 0
                             break
                         else:         
-                            needBuy = needBuy + bought
-                            bought = buyInDay
+                            for z in bought:
+                                tempOrder.tempItemList.append(z) #if order is undone , add item from first store into itemlist one more time to search in third store
+                            bought = buyInDay #save data of item buy in store second
                             buyInDay = []  
                     if daysCount ==0:
                         bought = buyInDay  + bought  #add item buy each day into list of item bought 
