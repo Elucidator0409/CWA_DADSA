@@ -5,8 +5,8 @@ from House  import House
 from Reader import Reader
 from LinkList import Node
 from LinkList import  DoublyLinkedList
-
 from Product import Product
+from Item import Item
 
 
 
@@ -15,24 +15,58 @@ from Product import Product
 __MAIN__
 '''
 #create the blank list 
-house = DoublyLinkedList()
-store = DoublyLinkedList()
+listOfHouse = DoublyLinkedList()
+listOfStore = DoublyLinkedList()
+
 #read data from the file
-read = Reader(store, house)
+read = Reader(listOfStore, listOfHouse)
 
 
 
 
+listOfItem = []
 
+itemNameList, costList, storeName = read.readItemList()
+houseNum = read.readHouseNumList()
+
+for i in range(0, 27):
+    tempListOfItem = Item(itemNameList[i], costList[i])
+    listOfItem.append(tempListOfItem) 
+
+
+
+house1 = listOfHouse.searchNode("1A")
+listOfOrder = house1.need
+
+listOfProduct = []
+tempListOfItem = listOfItem
+for i in listOfOrder:
+  
+    if (i == 1 or i == 2):
+        
+        tempListOfProduct = Product(tempListOfItem[0], i)
+        print(tempListOfProduct.item.name)
+        print(i)
+        tempListOfItem.pop(0)
+        listOfProduct.append(tempListOfProduct)
+    else:
+        tempListOfItem.pop(0)
+
+
+  
+
+'''
 def toDO(): 
     itemList, costList, storeName = read.readItemList()
-    nameList = read.readHouseNumList()
+    houseNum = read.readHouseNumList()
+    for i in houseNum:
+        print(i)
     productList = []
     quantityList = []
     buyList = []
    
     
-    
+    #create list of product with name + cost
     for i in range(0, 27):
         tempProduct = Product(itemList[i], costList[i])
         productList.append(tempProduct) # list of product 
@@ -88,7 +122,7 @@ def toDO():
            
                     
                 
-                '''
+                
                     if daysCount == 1:   # when shopping at 2 shop in 2 days 
                     if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
                         bought = buyInDay  + bought
@@ -108,7 +142,7 @@ def toDO():
                         bought = buyInDay #save data of item buy in store second
                         buyInDay = []
                  
-                   '''      
+                         
                
                 
 
@@ -128,13 +162,13 @@ def toDO():
                     print("do4")
                     bought = []
                     daysCount = 0
-                
+ '''               
             
                 
         
 
       
-toDO()
+#toDO()
 
 
 

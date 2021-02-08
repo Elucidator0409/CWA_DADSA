@@ -82,6 +82,9 @@ class Reader: #read file from csv
             #deal with first and second lines of file
             houseNum = next(reader) #take list of house numbers
             houseNum.pop(0)
+
+            for i in range(0, 7):
+                houseNum.pop(0)
             return houseNum
 
     def readItemList(self):
@@ -96,13 +99,13 @@ class Reader: #read file from csv
             for i in header:
                 storeName.append(i)
             
-            listOfItems = []
+            listOfItemName = []
             listOfCosts = []
             for col in reader:
-                listOfItems.append(col[1])
+                listOfItemName.append(col[1])
                 listOfCosts.append(col[2])
             
-            return listOfItems, listOfCosts, storeName
+            return listOfItemName, listOfCosts, storeName
     
     
 
