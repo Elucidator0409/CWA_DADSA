@@ -34,13 +34,13 @@ for i in range(0, 27):
     listOfItem.append(tempListOfItem) 
 
 
-
+#create list of product for each house
 for i in houseNum:
-    tempHouse = listOfHouse.searchNode(i)
-    listOfOrder = tempHouse.need
-
+    tempHouse = listOfHouse.searchNode(i) #search to house
+    listOfOrder = tempHouse.need #take house order
+    productList = []
     
-    tempListOfItem = listOfItem
+    tempListOfItem = listOfItem 
     count = 0
     for i in listOfOrder:
   
@@ -49,9 +49,10 @@ for i in houseNum:
             tempListOfProduct = Product(tempListOfItem[count], i)
             
             count = count +1
-            tempHouse.productList.append(tempListOfProduct)
+            productList.append(tempListOfProduct) 
         else:
             count = count+1  
+        tempHouse.productList = productList #add product list to house
 
 
 '''
