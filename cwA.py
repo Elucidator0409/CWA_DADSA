@@ -79,7 +79,7 @@ def toDO():
     daysCount = 0
     canDeli = []
        
-
+    def delivery(self):
         for a in testName:
             tempOrder = order.searchNode(a) #search to house
             tempNeed = tempOrder.need       #take order list from house
@@ -114,6 +114,7 @@ def toDO():
                     daysCount = daysCount + 1 
                     if not tempOrder.tempItemList : # if items were removed in tempList => all item found and bought => done and delivery
                         itemDeli = bought
+                        
                         bought = []
                         daysCount = 0  
                     
