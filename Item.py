@@ -3,4 +3,6 @@ class Item:
               
         self.name = name
         self.cost = cost
-        
+    
+    def createCopy(self):
+        return Item(self.name, self.cost)

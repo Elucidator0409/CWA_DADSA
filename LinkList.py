@@ -70,22 +70,4 @@ class DoublyLinkedList:
                     index = index.next
                 current = current.next
     
-    def traverse(self):
-        if self.head is None:
-            print("List has no entry")
-        else:
-            n = self.head
-            while n is not None:
-                print(n.item, " ")
-                n = n.next
-    def display(self):    
-        #Node current will point to head    
-        current = self.head;    
-        if(self.head == None):    
-            print("List is empty")  
-            return   
-        print("Nodes of doubly linked list: ")
-        while(current != None):     
-            #Prints each node by incrementing pointer.    
-            print(current.item.print),    
-            current = current.next 
+   

@@ -1,18 +1,20 @@
 class House:
-    def __init__(self, name,itemlist , need):
+    def __init__(self, name,itemNameList , need):
         self.name = name
-        self.itemlist = itemlist
-        self.tempItemList = itemlist
+        self.itemNameList = itemNameList
+        self.tempItemList = itemNameList[:]
         self.productList = []
+        self.purchasedProductList= []
        
         self.need = need
-    '''
-    def createCopy()
-        tempName = self.name
-        tempItemList =  self.itemlist
-        
-        tempTempItemList = self.tempItemList
+    
+    def createCopy(self):
+        newName = self.name
+        newProductList = []
+        for i in self.productList:
+            newProductList.append(i.createCopy())
+
+           
         tempNeed = self.need
-        return House(self.tempName, self,tempItemList, self.tempTempItemList, self.tempNeed)
+        return House(self.tempName, self,productList , self.tempNeed)
         #self.print = print("House of {0} is : {1} {2}".format(name,itemlist,need))
-'''
