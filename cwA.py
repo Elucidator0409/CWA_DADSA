@@ -121,15 +121,16 @@ def mainAlgo():
                     CurrentSolution.ProductNeedToBuy[day].append(i.purchasedProductList)
                     if day % 2 = 0 :
                         CurrentSolution.ProductNeedToBuy[day-1].(tempList)
-                   
-                    
                 else:
                     i.tempItemList.append(tempList)
-            
+                
+            CurrentSolution.HouseNeedToDeli.append(houseDeli)
+                
+
             listOfVisitedStores.append(store)
             nextStore = getNextStore(listOfVisitedStores)
 
-            recursionAlgo(nextStore, day i + 1)
+            recursionAlgo(nextStore, day + 1)
 '''
 
 
