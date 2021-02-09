@@ -3,8 +3,7 @@ import csv
 from Store  import Store
 from House  import House
 from Reader import Reader
-from LinkList import Node
-from LinkList import  DoublyLinkedList
+
 from Product import Product
 from Item import Item
 from Solution import Solution
@@ -15,9 +14,6 @@ from Solution import Solution
 '''
 __MAIN__
 '''
-#create the blank list 
-
- 
 #read data from the file
 read = Reader()
 listOfStore, listOfHouseFirstWeek, listOfHouseSecondWeek = read.readData()
@@ -71,9 +67,9 @@ def mainAlgo():
         recursionAlgo(store, 1)
     
     def reset(listOfRemainingOrders, listOfVisitedStores, CurrentSolution):
-    listOfRemainingOrders = listOfHouseFirstWeek.[:]
-    listOfVisitedStores = []
-    CurrentSolution = Solution()
+        listOfRemainingOrders = listOfHouseFirstWeek[:]
+        listOfVisitedStores = []
+        CurrentSolution = Solution()
 
     def compare(BestSolution, CurrentSolution):
         pre = BestSolution.TimesToBuyItems
@@ -119,8 +115,9 @@ def mainAlgo():
                     houseDeli.append(i.name)
                     listOfRemainingOrders.remove(i)
                     CurrentSolution.ProductNeedToBuy[day].append(i.purchasedProductList)
-                    if day % 2 = 0 :
-                        CurrentSolution.ProductNeedToBuy[day-1].(tempList)
+                    if day % 2 == 0 :
+                        day = day -1
+                        CurrentSolution.ProductNeedToBuy[day].append(tempList)
                 else:
                     i.tempItemList.append(tempList)
                 
@@ -131,7 +128,7 @@ def mainAlgo():
             nextStore = getNextStore(listOfVisitedStores)
 
             recursionAlgo(nextStore, day + 1)
-'''
+
 
 
 
