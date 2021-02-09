@@ -1,4 +1,4 @@
-class Store:
+class Store:    
     #Constructors
     def __init__(self, item, name):
         #items will not be duplicated, this is enforced by the user
