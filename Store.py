@@ -63,3 +63,6 @@ class Store:
 
     def quick_sort(self):
         return
+    
+    def __eq__(self, other)
+        return self.name == other.name

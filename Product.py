@@ -4,3 +4,5 @@ class Product:
         self.quantity = quantity
     def createCopy(self):
         return Product(self.item.createCopy(), self.quantity)
+    def __eq__(self, other):
+        return self.item == other.item
