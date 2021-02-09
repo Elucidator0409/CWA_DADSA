@@ -26,10 +26,14 @@ class Reader: #read file from csv
            
             
             tempStoreA = Store(itemInA, header[3])
+            tempStoreA.sortStore()
             tempStoreB = Store(itemInB, header[4])
+            tempStoreB.sortStore()
             tempStoreC = Store(itemInC, header[5])
+            tempStoreC.sortStore()
             store = []
             store.append(tempStoreA)
+            
             store.append(tempStoreB)
             store.append(tempStoreC)
 

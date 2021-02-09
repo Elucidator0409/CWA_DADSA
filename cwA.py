@@ -105,7 +105,6 @@ def mainAlgo():
                     
 
                 for y in i.tempItemList:
-                    store.sortStore()
                     check = store.search(y)
                     if check == True:
                         i.purchasedProductList.append(y)
@@ -125,7 +124,7 @@ def mainAlgo():
             CurrentSolution.HouseNeedToDeli.append(houseDeli)
                 
 
-            listOfVisitedStores.append(store.name)
+            listOfVisitedStores.append(store)
             nextStore = getNextStore(listOfVisitedStores)
 
             recursionAlgo(nextStore, day + 1)
