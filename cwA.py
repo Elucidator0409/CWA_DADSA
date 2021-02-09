@@ -26,8 +26,10 @@ houseNum = read.readHouseNumList()
 
 
 def getNextStore(visitedStoreName):
-    tempStoreName = storeName[:]
-    tempStoreName.remove(visitedStoreName)
+    tempStoreName = listOfStore[:]
+    
+    for i in visitedStoreName:
+        tempStoreName.remove(i)
     return tempStoreName
 
 def createProductList():
@@ -40,7 +42,7 @@ def createProductList():
 
     #create list of product for each house
     for i in houseNum:
-        tempHouse = listOfHouse.searchNode(i) #search to house
+        tempHouse = listOfHouseFirstWeek.searchNode(i) #search to house
         listOfOrder = tempHouse.need #take house order
         productList = []
     
@@ -62,14 +64,13 @@ def mainAlgo():
     
     listOfRemainingOrders = listOfHouseFirstWeek[:]
     listOfVisitedStores = []
-    CurrentSolution = Solution()
-    for store in  listOfStore:
-        recursionAlgo(store, 1)
+    CurrentSolution = Solution(TimesToBuyItems)
+    
     
     def reset(listOfRemainingOrders, listOfVisitedStores, CurrentSolution):
         listOfRemainingOrders = listOfHouseFirstWeek[:]
         listOfVisitedStores = []
-        CurrentSolution = Solution()
+        CurrentSolution = Solution(TimesToBuyItems)
 
     def compare(BestSolution, CurrentSolution):
         pre = BestSolution.TimesToBuyItems
@@ -87,7 +88,7 @@ def mainAlgo():
             return 0
 
 
-    
+    houseDeli = []
     def recursionAlgo(store, day):
         if(day > 7):
             reset(listOfRemainingOrders, listOfVisitedStores, CurrentSolution)
@@ -110,7 +111,7 @@ def mainAlgo():
                         i.purchasedProductList.append(y)
                         i.tempItemList.remove(y)
                         
-               
+                
                 if not i.tempItemList: 
                     houseDeli.append(i.name)
                     listOfRemainingOrders.remove(i)
@@ -124,13 +125,16 @@ def mainAlgo():
             CurrentSolution.HouseNeedToDeli.append(houseDeli)
                 
 
-            listOfVisitedStores.append(store)
+            listOfVisitedStores.append(store.name)
             nextStore = getNextStore(listOfVisitedStores)
 
             recursionAlgo(nextStore, day + 1)
 
+    for i in  listOfStore:
+        recursionAlgo(i, 1)
 
 
+mainAlgo()
 
 
 
